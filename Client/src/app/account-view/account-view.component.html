@@ -1,0 +1,36 @@
+<div>
+    <div class="contain">
+        <mat-toolbar color="primary">
+            <span class="custom-font align-text">Welcome, John Doe</span>
+        </mat-toolbar>
+        <div class="account-container" *ngIf="!withdrawOpen">
+            <div class="details-container">
+                <div class="label-contain" style="margin-top:25px">
+                    <label>Balance</label>
+                    <p>${{balance}}</p>
+                </div>
+                <div class="label-contain">
+                    <label>Available Funds</label>
+                    <p>${{availableFunds}}</p>
+                </div>
+                <div class="label-contain">
+                    <label>Credit Limit</label>
+                    <p>${{creditLimit}}</p>
+                </div>
+                <button mat-raised-button color="accent" style="margin-top: 25px" (click)="withdraw()">Withdraw</button>
+            </div>
+        </div>
+        <div *ngIf="withdrawOpen">
+            <div class="account-container">
+                <div class="withdraw-container">
+                    <form (submit)="sendWithDrawAmount($event)">
+                            <label>Amount to Withdraw</label>
+                            <input matInput (change)="onChange($event)" type='number' >
+                            <p *ngIf="error">{{errorMessage}}</p>
+                            <button mat-raised-button color="accent" style="margin-top: 25px" type="submit" >Make Withdraw</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
